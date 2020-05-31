@@ -1,6 +1,6 @@
 language: java
+os: linux
 dist: trusty
-sudo: required
 jdk:
   - oraclejdk8
 install:

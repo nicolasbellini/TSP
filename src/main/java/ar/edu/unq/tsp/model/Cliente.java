@@ -1,20 +1,20 @@
 package ar.edu.unq.tsp.model;
 
+import ar.edu.unq.tsp.model.error.NoSeEncontraronLosDatos;
+
 public class Cliente {
     private String nombreFantasia;
-    private String calle;
-    private String altura;
-    private String localidad;
-    private String provincia;
+    private Direccion direccion;
+    private String telefono;
+    private String email;
 
     public Cliente() {}
 
-    public Cliente(String nombreFantasia, String calle, String altura, String localidad, String provincia) {
+    public Cliente(String nombreFantasia, Direccion direccion, String telefono, String email) {
         this.nombreFantasia = nombreFantasia;
-        this.calle = calle;
-        this.altura = altura;
-        this.localidad = localidad;
-        this.provincia = provincia;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
     }
 
     public String getNombreFantasia() {
@@ -25,35 +25,34 @@ public class Cliente {
         this.nombreFantasia = nombreFantasia;
     }
 
-    public String getCalle() {
-        return calle;
+    public Direccion getDireccion() {
+        return direccion;
     }
 
-    public void setCalle(String calle) {
-        this.calle = calle;
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
     }
 
-    public String getAltura() {
-        return altura;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setAltura(String altura) {
-        this.altura = altura;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getLocalidad() {
-        return localidad;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getProvincia() {
-        return provincia;
-    }
-
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
+    public String getDireccionCompleta() throws NoSeEncontraronLosDatos {
+        if(direccion == null || direccion.toString().isEmpty()) {
+            throw new NoSeEncontraronLosDatos();
+        }
+        return this.direccion.toString();
     }
 }

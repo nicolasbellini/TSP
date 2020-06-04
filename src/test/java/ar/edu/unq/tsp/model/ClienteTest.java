@@ -1,94 +1,124 @@
 package ar.edu.unq.tsp.model;
 
+import ar.edu.unq.tsp.model.error.NoSeEncontraronLosDatos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ClienteTest {
 
     String nombre;
-    String calle;
-    String altura;
-    String localidad;
-    String provincia;
+    String telefono;
+    String email;
+    Direccion direccion;
     Cliente tito;
+
 
     @BeforeEach
     void setUp() {
         nombre = "tito";
-        calle = "lavalle";
-        altura = "160";
-        localidad = "Bernal oeste";
-        provincia = "Cordoba";
-        tito = new Cliente(nombre, calle, altura, localidad,provincia);
+        telefono = "113781654";
+        email = "seba@gmail.com";
+        direccion = mock(Direccion.class);
+
+        tito = new Cliente(nombre, direccion, telefono, email);
     }
 
     @Test
-    public void puedoGenerarUnCliente() {
+    void puedoGenerarUnCliente() {
         Cliente cliente = new Cliente();
         assertNotNull(cliente);
     }
 
     @Test
-    public void alCrearUnClientePuedeTenerUnNombreFantasia(){
-        assertEquals(tito.getNombreFantasia() ,nombre);
-    }
-
-    @Test
-    public void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarElNombre(){
+    void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarElNombre(){
         String nombreNuevo = "Tito Lopez";
         tito.setNombreFantasia(nombreNuevo);
         assertEquals(tito.getNombreFantasia() ,nombreNuevo);
     }
 
     @Test
-    public void alCrearUnClientePuedeTenerunaCalle(){
-        assertEquals(tito.getCalle() ,calle);
-    }
-
-    @Test
-    public void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarLaCalleDondeSeEntrega(){
+    void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarLaCalleDondeSeEntrega(){
         String calleNueva = "avellaneda";
-        tito.setCalle(calleNueva);
-        assertEquals(tito.getCalle() ,calleNueva);
+
+        when(direccion.getCalle()).thenReturn(calleNueva);
+        tito.setDireccion(direccion);
+
+        assertEquals(tito.getDireccion().getCalle() ,calleNueva);
     }
 
     @Test
-    public void alCrearUnClientePuedeTenerunaAltura(){
-        assertEquals(tito.getAltura() ,altura);
-    }
-
-    @Test
-    public void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarLaAlturaDeLaCalleDondeEntregarElPedido(){
+    void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarLaAlturaDeLaCalleDondeEntregarElPedido(){
         String alturaNuevo = "200";
-        tito.setAltura(alturaNuevo);
-        assertEquals(tito.getAltura() ,alturaNuevo);
+
+        when(direccion.getAltura()).thenReturn(alturaNuevo);
+        tito.setDireccion(direccion);
+
+        assertEquals(tito.getDireccion().getAltura() ,alturaNuevo);
     }
 
     @Test
-    public void alCrearUnClientePuedeTenerLocalidad(){
-        assertEquals(tito.getLocalidad() ,localidad);
-    }
-
-    @Test
-    public void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarSuLocalidad(){
+    void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarSuLocalidad(){
         String localidadNuevo = "Bernal";
-        tito.setLocalidad(localidadNuevo);
-        assertEquals(tito.getLocalidad() ,localidadNuevo);
+
+        when(direccion.getLocalidad()).thenReturn(localidadNuevo);
+        tito.setDireccion(direccion);
+
+        assertEquals(tito.getDireccion().getLocalidad() ,localidadNuevo);
     }
 
     @Test
-    public void alCrearUnClientePuedeTenerAsociadaUnaProvincia(){
-        assertEquals(tito.getProvincia() ,provincia);
-    }
-
-    @Test
-    public void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarSuProvincia(){
+    void aUnClienteUnaVezCreadoSeLeDeseaPoderCambiarSuProvincia(){
         String provinciaNuevo = "Buenos Aires";
-        tito.setProvincia(provinciaNuevo);
-        assertEquals(tito.getProvincia() ,provinciaNuevo);
+
+        when(direccion.getProvincia()).thenReturn(provinciaNuevo);
+        tito.setDireccion(direccion);
+
+        assertEquals(tito.getDireccion().getProvincia() ,provinciaNuevo);
     }
 
+    @Test
+    void alCrearUnClientePuedeTenerAsociadaUnaDireccion() {
+        tito.setDireccion(direccion);
+        verify(tito.getDireccion());
+    }
+
+    @Test
+    void unClienteSaveSuDireccion() throws NoSeEncontraronLosDatos {
+        String dir = "lavalle 160,Bernal oeste,Cordoba";
+
+        when(direccion.toString()).thenReturn(dir);
+        tito.setDireccion(direccion);
+
+        assertEquals(tito.getDireccionCompleta() ,dir);
+    }
+
+    @Test
+    void unClientePuedeTenerAsociadoUnTelefonoYPuedeEditarElMismo() {
+        String telefonoNuevo = "1234567";
+
+        tito.setTelefono(telefonoNuevo);
+
+        assertEquals(tito.getTelefono() , telefonoNuevo);
+    }
+
+    @Test
+    void unClientePuedeTenerAsociadoUnEmailYPuedeEditarElMismo() {
+        String emailNuevo = "asdf@asdf.com";
+
+        tito.setEmail(emailNuevo);
+
+        assertEquals(tito.getEmail() , emailNuevo);
+    }
+
+    @Test
+    void unClienteQueNoTieneDireccionPuedeLanzarUnaExcepcion(){
+        Cliente cliente = new Cliente();
+        assertThrows(NoSeEncontraronLosDatos.class, ()->{
+                cliente.getDireccionCompleta();
+            }
+        );
+    }
 }

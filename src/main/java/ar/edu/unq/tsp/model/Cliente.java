@@ -2,8 +2,15 @@ package ar.edu.unq.tsp.model;
 
 import ar.edu.unq.tsp.model.error.NoSeEncontraronLosDatos;
 
+import javax.persistence.*;
+
+@Entity
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nombreFantasia;
+    @OneToOne
     private Direccion direccion;
     private String telefono;
     private String email;
@@ -15,6 +22,14 @@ public class Cliente {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombreFantasia() {

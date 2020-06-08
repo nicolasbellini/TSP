@@ -18,7 +18,7 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<Cliente> getAll() {
         return clienteService.getAll();
@@ -31,13 +31,13 @@ public class ClienteController {
         return unCliente.orElse(new Cliente());
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente) {
         return clienteService.create(cliente);
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
     public Cliente update(@RequestBody Cliente cliente) {
         return clienteService.update(cliente);

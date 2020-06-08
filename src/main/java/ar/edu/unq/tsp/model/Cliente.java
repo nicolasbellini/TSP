@@ -10,7 +10,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombreFantasia;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Direccion direccion;
     private String telefono;
     private String email;

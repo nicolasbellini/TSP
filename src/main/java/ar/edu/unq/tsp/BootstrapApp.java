@@ -1,4 +1,4 @@
-package ar.edu.unq.tsp.bootstrapapp;
+package ar.edu.unq.tsp;
 
 import ar.edu.unq.tsp.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;

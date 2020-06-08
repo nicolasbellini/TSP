@@ -1,13 +1,13 @@
 package ar.edu.unq.tsp.controller;
 
 import ar.edu.unq.tsp.model.Cliente;
-import ar.edu.unq.tsp.model.error.NoSeEncontraronLosDatos;
 import ar.edu.unq.tsp.service.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping(ClienteController.BASE_URL)
 public class ClienteController {

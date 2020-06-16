@@ -17,9 +17,10 @@ public class ProductoUbicacion {
     public ProductoUbicacion(){
     }
 
-    public ProductoUbicacion(Double stock, Direccion direccion) {
+    public ProductoUbicacion(Double stock, Direccion direccion, Producto producto) {
         this.stock = stock;
         this.direccion = direccion;
+        this.producto = producto;
     }
 
     public Long getId() {

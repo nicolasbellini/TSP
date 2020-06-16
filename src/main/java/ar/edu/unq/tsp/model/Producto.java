@@ -2,7 +2,6 @@ package ar.edu.unq.tsp.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +13,7 @@ public class Producto {
     public String nombre;
     public Double precio;
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<ProductoUbicacion> productoUbicacion = new HashSet<ProductoUbicacion>();
+    private Set<ProductoUbicacion> productoUbicacion = new HashSet<>();
 
 
     public Producto(){}
@@ -57,4 +56,21 @@ public class Producto {
     }
 
 
+    public void addProductoUbicacion(ProductoUbicacion productoUbicacion) {
+        this.productoUbicacion.add(productoUbicacion);
+    }
+
+    public ProductoUbicacion nuevoProductoUbicacion(Double stock, Direccion direccion){
+        ProductoUbicacion productoUbicacion = new ProductoUbicacion(stock, direccion, this);
+        this.productoUbicacion.add(productoUbicacion);
+        return productoUbicacion;
+    }
+
+    public double getStockTotal() {
+        double total = 0d;
+        for (ProductoUbicacion productoUbicacion : this.productoUbicacion){
+            total = total + productoUbicacion.getStock();
+        }
+        return total;
+    }
 }

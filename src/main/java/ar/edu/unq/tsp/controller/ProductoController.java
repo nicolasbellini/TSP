@@ -1,9 +1,10 @@
 package ar.edu.unq.tsp.controller;
 
 
-import ar.edu.unq.tsp.model.Cliente;
+import ar.edu.unq.tsp.exception.ProductoUbicacionException;
+import ar.edu.unq.tsp.model.Direccion;
 import ar.edu.unq.tsp.model.Producto;
-import ar.edu.unq.tsp.service.ProductoService;
+import ar.edu.unq.tsp.service.impl.ProductoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class ProductoController {
 
     @Autowired
-    ProductoService productoService;
+    ProductoServiceImpl productoService;
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
@@ -35,6 +36,12 @@ public class ProductoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Producto create(@RequestBody Producto producto) {
         return productoService.create(producto);
+    }
+
+    @PostMapping("/{id}/{stock}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Producto crearProductoUbicacion(@RequestBody Direccion direccion, @PathVariable ("id") Long id, @PathVariable ("stock") Double stock) throws ProductoUbicacionException {
+        return productoService.agregarProductoUbicacion(id, stock, direccion);
     }
 
     @PutMapping("")

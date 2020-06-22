@@ -1,14 +1,10 @@
 package ar.edu.unq.tsp.model;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -26,6 +22,7 @@ public class ProductoUbicacionTest {
     }
 
     @Test
+    @DisplayName("Se puede cambiar el stock de un producto")
     void sePuedeCambiarElStockDeUnProducto(){
         productoUbicacion.setStock(12d);
         assertEquals(productoUbicacion.getStock(),12d);

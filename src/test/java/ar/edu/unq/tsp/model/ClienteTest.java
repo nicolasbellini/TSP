@@ -83,7 +83,7 @@ class ClienteTest {
     @Test
     void alCrearUnClientePuedeTenerAsociadaUnaDireccion() {
         tito.setDireccion(direccion);
-        verify(tito.getDireccion());
+        assertEquals(tito.getDireccion(),direccion);
     }
 
     @Test

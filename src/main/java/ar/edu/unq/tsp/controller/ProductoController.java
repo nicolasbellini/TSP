@@ -1,6 +1,7 @@
 package ar.edu.unq.tsp.controller;
 
 
+import ar.edu.unq.tsp.DTO.ProductoUbicacionDTO;
 import ar.edu.unq.tsp.exception.ProductoUbicacionException;
 import ar.edu.unq.tsp.model.Direccion;
 import ar.edu.unq.tsp.model.Producto;
@@ -38,10 +39,10 @@ public class ProductoController {
         return productoService.create(producto);
     }
 
-    @PostMapping("/{id}/{stock}")
+    @PostMapping("/nuevoProductoUbicacion")
     @ResponseStatus(HttpStatus.CREATED)
-    public Producto crearProductoUbicacion(@RequestBody Direccion direccion, @PathVariable ("id") Long id, @PathVariable ("stock") Double stock) throws ProductoUbicacionException {
-        return productoService.agregarProductoUbicacion(id, stock, direccion);
+    public Producto crearProductoUbicacion(@RequestBody ProductoUbicacionDTO productoUbicacionDTO) throws ProductoUbicacionException {
+        return productoService.agregarProductoUbicacion(productoUbicacionDTO);
     }
 
     @PutMapping("")

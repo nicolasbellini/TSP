@@ -1,7 +1,7 @@
 package ar.edu.unq.tsp.service;
 
+import ar.edu.unq.tsp.DTO.ProductoUbicacionDTO;
 import ar.edu.unq.tsp.exception.ProductoUbicacionException;
-import ar.edu.unq.tsp.model.Direccion;
 import ar.edu.unq.tsp.model.Producto;
 
 import java.util.List;
@@ -13,5 +13,5 @@ public interface ProductoService {
      Producto create(Producto producto);
      Producto update(Producto producto);
      void delete(Producto producto);
-     Producto agregarProductoUbicacion(Long id, Double stock, Direccion direccion) throws ProductoUbicacionException;
+     Producto agregarProductoUbicacion(ProductoUbicacionDTO productoUbicacionDTO) throws ProductoUbicacionException;
 }

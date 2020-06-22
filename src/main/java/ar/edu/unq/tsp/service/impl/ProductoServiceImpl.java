@@ -1,7 +1,7 @@
 package ar.edu.unq.tsp.service.impl;
 
+import ar.edu.unq.tsp.DTO.ProductoUbicacionDTO;
 import ar.edu.unq.tsp.exception.ProductoUbicacionException;
-import ar.edu.unq.tsp.model.Direccion;
 import ar.edu.unq.tsp.model.Producto;
 import ar.edu.unq.tsp.repository.ProductoRepository;
 import ar.edu.unq.tsp.service.ProductoService;
@@ -38,11 +38,11 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
 
-    public Producto agregarProductoUbicacion(Long id, Double stock, Direccion direccion) throws ProductoUbicacionException {
-        Optional<Producto> productoOptional = productoRepository.findById(id);
+    public Producto agregarProductoUbicacion(ProductoUbicacionDTO productoUbicacionDTO) throws ProductoUbicacionException {
+        Optional<Producto> productoOptional = productoRepository.findById(productoUbicacionDTO.getId());
         if (productoOptional.isPresent()){
             Producto producto = productoOptional.get();
-            producto.nuevoProductoUbicacion(stock,direccion);
+            producto.nuevoProductoUbicacion(productoUbicacionDTO.getStock(),productoUbicacionDTO.getDireccion());
             return productoRepository.save(producto);
         }
         else{

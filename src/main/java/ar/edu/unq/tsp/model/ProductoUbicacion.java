@@ -11,8 +11,6 @@ public class ProductoUbicacion {
     Double stock;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Direccion direccion;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    Producto producto;
 
     public ProductoUbicacion(){
     }
@@ -20,7 +18,6 @@ public class ProductoUbicacion {
     public ProductoUbicacion(Double stock, Direccion direccion, Producto producto) {
         this.stock = stock;
         this.direccion = direccion;
-        this.producto = producto;
     }
 
     public Long getId() {
@@ -30,15 +27,6 @@ public class ProductoUbicacion {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
 
     public Double getStock() {
         return stock;

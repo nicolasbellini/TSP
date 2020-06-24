@@ -9,9 +9,9 @@ public class ProductoUbicacion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long id;
     Double stock;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Direccion direccion;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Producto producto;
 
     public ProductoUbicacion(){

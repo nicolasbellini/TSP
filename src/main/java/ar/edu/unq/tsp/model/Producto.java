@@ -12,7 +12,7 @@ public class Producto {
     public Long id;
     public String nombre;
     public Double precio;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ProductoUbicacion> productoUbicacion = new HashSet<>();
 
 

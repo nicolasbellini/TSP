@@ -10,7 +10,7 @@ public interface PedidoService {
     List<Pedido> getAll();
     Optional<Pedido> getById(Long id);
     Pedido create(Pedido producto);
-    Pedido update(Pedido producto);
+    Pedido update(Pedido producto) throws Exception;
     void delete(Pedido producto);
     Pedido nuevoPedidoDetalle(PedidoDetalleDTO pedidoDetalleDTO) throws Exception;
 

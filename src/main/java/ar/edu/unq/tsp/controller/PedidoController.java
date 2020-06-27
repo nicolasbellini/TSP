@@ -72,7 +72,7 @@ public class PedidoController {
 
     @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public Pedido update(@RequestBody Pedido pedido) {
+    public Pedido update(@RequestBody Pedido pedido) throws Exception {
         return pedidoService.update(pedido);
     }
 

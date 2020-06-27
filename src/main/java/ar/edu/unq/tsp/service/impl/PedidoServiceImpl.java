@@ -27,13 +27,18 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Pedido create(Pedido producto) {
-        return pedidoRepository.save(producto);
+    public Pedido create(Pedido pedido) {
+        return pedidoRepository.save(pedido);
     }
 
     @Override
-    public Pedido update(Pedido producto) {
-        return pedidoRepository.save(producto);
+    public Pedido update(Pedido pedido) throws Exception {
+        if (!pedido.isEntregado()){
+            return pedidoRepository.save(pedido);
+        }
+        else {
+            throw new Exception("Este pedido ya ah sido entregado");
+        }
     }
 
     @Override

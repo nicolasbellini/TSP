@@ -30,7 +30,7 @@ public class ProductoTest {
         producto = new Producto(nombre, precio);
         direccion = new Direccion();
         productoUbicacionSet = new HashSet<>();
-        productoUbicacion = new ProductoUbicacion(3d, direccion, producto);
+        productoUbicacion = new ProductoUbicacion(3d, direccion);
         productoUbicacionSet.add(productoUbicacion);
         producto.setProductoUbicacion(productoUbicacionSet);
     }

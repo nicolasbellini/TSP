@@ -3,9 +3,8 @@ package ar.edu.unq.tsp.controller;
 
 import ar.edu.unq.tsp.DTO.ProductoUbicacionDTO;
 import ar.edu.unq.tsp.exception.ProductoUbicacionException;
-import ar.edu.unq.tsp.model.Direccion;
 import ar.edu.unq.tsp.model.Producto;
-import ar.edu.unq.tsp.service.impl.ProductoServiceImpl;
+import ar.edu.unq.tsp.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,7 @@ import java.util.Optional;
 public class ProductoController {
 
     @Autowired
-    ProductoServiceImpl productoService;
+    ProductoService productoService;
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)

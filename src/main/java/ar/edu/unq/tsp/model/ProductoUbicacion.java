@@ -15,7 +15,7 @@ public class ProductoUbicacion {
     public ProductoUbicacion(){
     }
 
-    public ProductoUbicacion(Double stock, Direccion direccion, Producto producto) {
+    public ProductoUbicacion(Double stock, Direccion direccion) {
         this.stock = stock;
         this.direccion = direccion;
     }

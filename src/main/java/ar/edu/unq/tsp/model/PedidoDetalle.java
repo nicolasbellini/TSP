@@ -1,5 +1,7 @@
 package ar.edu.unq.tsp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,14 +10,20 @@ public class PedidoDetalle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="pedido_id")
+    private Pedido pedido;
     @OneToOne
     private Producto producto;
     private Double cantidad;
 
     public PedidoDetalle(){  }
 
-    public PedidoDetalle(Producto producto, Double cantidad){
+    public PedidoDetalle(Producto producto, Pedido pedido, Double cantidad){
         this.producto = producto;
+        this.pedido = pedido;
         this.cantidad = cantidad;
     }
 
@@ -29,6 +37,15 @@ public class PedidoDetalle {
 
     public PedidoDetalle setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public PedidoDetalle setPedido(Pedido pedido) {
+        this.pedido = pedido;
         return this;
     }
 

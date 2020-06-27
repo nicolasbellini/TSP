@@ -61,7 +61,7 @@ public class Producto {
     }
 
     public ProductoUbicacion nuevoProductoUbicacion(Double stock, Direccion direccion){
-        ProductoUbicacion productoUbicacion = new ProductoUbicacion(stock, direccion, this);
+        ProductoUbicacion productoUbicacion = new ProductoUbicacion(stock, direccion);
         this.productoUbicacion.add(productoUbicacion);
         return productoUbicacion;
     }

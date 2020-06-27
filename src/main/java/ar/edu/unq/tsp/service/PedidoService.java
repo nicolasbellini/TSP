@@ -17,4 +17,8 @@ public interface PedidoService {
     Pedido enviarPedido(Pedido pedido);
 
     List<Pedido> getPedidosEnviados();
+
+    Pedido descartarPedido(Pedido pedido);
+
+    List<Pedido> getPedidosDescartados();
 }

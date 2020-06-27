@@ -52,6 +52,18 @@ public class PedidoController {
         return pedidoService.getPedidosEnviados();
     }
 
+    @PostMapping("/descartarPedido")
+    @ResponseStatus(HttpStatus.OK)
+    public Pedido descartarPedido(@RequestBody Pedido pedido){
+        return this.pedidoService.descartarPedido(pedido);
+    }
+
+    @GetMapping("/getPedidosDescartados")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Pedido> getPedidosDescartados(){
+        return this.pedidoService.getPedidosDescartados();
+    }
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Pedido create(@RequestBody Pedido pedido) {

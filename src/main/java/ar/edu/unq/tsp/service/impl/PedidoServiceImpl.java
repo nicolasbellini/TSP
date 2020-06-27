@@ -64,4 +64,15 @@ public class PedidoServiceImpl implements PedidoService {
     public List<Pedido> getPedidosEnviados() {
         return this.pedidoRepository.findByEntregadoTrue();
     }
+
+    @Override
+    public Pedido descartarPedido(Pedido pedido) {
+        pedido.setDescartado(true);
+        return this.pedidoRepository.save(pedido);
+    }
+
+    @Override
+    public List<Pedido> getPedidosDescartados() {
+        return this.pedidoRepository.findByDescartadoTrue();
+    }
 }

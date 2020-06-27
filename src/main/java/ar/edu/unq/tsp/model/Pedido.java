@@ -14,6 +14,7 @@ public class Pedido {
     private Long id;
     private Double total;
     private boolean entregado = false;
+    private boolean descartado = false;
 
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pedido")
@@ -54,6 +55,15 @@ public class Pedido {
 
     public Pedido setEntregado(boolean entregado) {
         this.entregado = entregado;
+        return this;
+    }
+
+    public boolean isDescartado() {
+        return descartado;
+    }
+
+    public Pedido setDescartado(boolean rechazado) {
+        this.descartado = rechazado;
         return this;
     }
 }

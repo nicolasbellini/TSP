@@ -9,4 +9,5 @@ public interface PedidoRepository extends JpaRepository<Pedido,Long> {
 
 
     List<Pedido> findByEntregadoTrue();
+    List<Pedido> findByDescartadoTrue();
 }

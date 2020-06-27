@@ -15,13 +15,16 @@ public class Pedido {
     private Double total = 0d;
     private boolean entregado = false;
     private boolean descartado = false;
+    @OneToOne
+    private Cliente cliente;
 
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pedido")
     List<PedidoDetalle> pedidoDetalleList = new LinkedList();
 
-    public Pedido(List<PedidoDetalle> pedidoDetalles){
+    public Pedido(Cliente cliente,List<PedidoDetalle> pedidoDetalles){
         this.pedidoDetalleList = pedidoDetalles;
+        this.cliente = cliente;
     }
 
     public Pedido() {  }
@@ -82,6 +85,15 @@ public class Pedido {
 
     public Pedido setTotal(Double total) {
         this.total = total;
+        return this;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public Pedido setCliente(Cliente cliente) {
+        this.cliente = cliente;
         return this;
     }
 }

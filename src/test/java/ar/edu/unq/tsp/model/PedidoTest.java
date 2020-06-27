@@ -16,15 +16,17 @@ public class PedidoTest {
     List<PedidoDetalle> pedidoDetalleList = new LinkedList<>();
     PedidoDetalle pedidoDetalleMock;
     PedidoDetalle pedidoDetalleMock2;
+    Cliente clienteMock;
 
     @BeforeEach
     void setUp(){
 
+        clienteMock = mock(Cliente.class);
         pedidoDetalleMock = mock(PedidoDetalle.class);
         pedidoDetalleMock2 = mock(PedidoDetalle.class);
         pedidoDetalleList.add(pedidoDetalleMock);
         pedidoDetalleList.add(pedidoDetalleMock2);
-        pedido = new Pedido(pedidoDetalleList);
+        pedido = new Pedido(clienteMock, pedidoDetalleList);
 
     }
 

@@ -1,10 +1,7 @@
 package ar.edu.unq.tsp.controller;
 
 import ar.edu.unq.tsp.DTO.PedidoDetalleDTO;
-import ar.edu.unq.tsp.DTO.ProductoUbicacionDTO;
-import ar.edu.unq.tsp.exception.ProductoUbicacionException;
 import ar.edu.unq.tsp.model.Pedido;
-import ar.edu.unq.tsp.model.Producto;
 import ar.edu.unq.tsp.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

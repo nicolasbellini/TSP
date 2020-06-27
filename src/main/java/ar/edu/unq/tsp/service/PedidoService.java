@@ -21,4 +21,6 @@ public interface PedidoService {
     Pedido descartarPedido(Pedido pedido);
 
     List<Pedido> getPedidosDescartados();
+
+    Pedido deshacerDescarte(Pedido pedido);
 }

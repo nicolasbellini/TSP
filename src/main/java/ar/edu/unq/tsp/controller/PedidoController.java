@@ -64,6 +64,12 @@ public class PedidoController {
         return this.pedidoService.getPedidosDescartados();
     }
 
+    @GetMapping("/deshacerDescarte")
+    @ResponseStatus(HttpStatus.OK)
+    public Pedido deshacerDescarte(@RequestBody Pedido pedido){
+        return this.pedidoService.deshacerDescarte(pedido);
+    }
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Pedido create(@RequestBody Pedido pedido) {

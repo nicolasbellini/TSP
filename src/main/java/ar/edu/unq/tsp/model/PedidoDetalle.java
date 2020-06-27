@@ -27,7 +27,7 @@ public class PedidoDetalle {
         this.cantidad = cantidad;
     }
 
-    public Double getTotal(){
+    public Double getSubTotal(){
         return cantidad * producto.getPrecio();
     }
 

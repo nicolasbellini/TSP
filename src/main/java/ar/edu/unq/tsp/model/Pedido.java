@@ -12,7 +12,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double total;
+    private Double total = 0d;
     private boolean entregado = false;
     private boolean descartado = false;
 
@@ -26,8 +26,17 @@ public class Pedido {
 
     public Pedido() {  }
 
+
+    public void calcularTotal(){
+        pedidoDetalleList.forEach(pedidoDetalle -> this.agregarTotal(pedidoDetalle.getSubTotal()));
+    }
+
     public Long getId() {
         return id;
+    }
+
+    private void agregarTotal(Double a){
+        this.total += a;
     }
 
     public Pedido setId(Long id) {
@@ -64,6 +73,15 @@ public class Pedido {
 
     public Pedido setDescartado(boolean rechazado) {
         this.descartado = rechazado;
+        return this;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public Pedido setTotal(Double total) {
+        this.total = total;
         return this;
     }
 }

@@ -51,9 +51,13 @@ public class PedidoServiceImpl implements PedidoService {
         Optional<Pedido> pedidoOptional = pedidoRepository.findById(pedidoDetalleDTO.getId());
         if (pedidoOptional.isPresent()){
             Pedido pedido = pedidoOptional.get();
-            pedido.agregarPedidoDetalle(pedidoDetalleDTO.getPedidoDetalle());
-            return pedidoRepository.save(pedido);
-        }
+            if(pedido.isEntregado()) {
+                pedido.agregarPedidoDetalle(pedidoDetalleDTO.getPedidoDetalle());
+                return pedidoRepository.save(pedido);
+            }else{
+                    throw new Exception("El pedido ya fue entregado");
+                }
+            }
         else {
             throw new Exception("El pedido no existe");
         }

@@ -15,7 +15,7 @@ public class Pedido {
     private Double total = 0d;
     private boolean entregado = false;
     private boolean descartado = false;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Cliente cliente;
 
     @JsonManagedReference

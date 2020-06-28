@@ -84,4 +84,10 @@ public class PedidoServiceImpl implements PedidoService {
     public List<Pedido> getPedidosDescartados() {
         return this.pedidoRepository.findByDescartadoTrue();
     }
+
+    @Override
+    public Pedido deshacerDescarte(Pedido pedido) {
+        pedido.setDescartado(false);
+        return this.pedidoRepository.save(pedido);
+    }
 }

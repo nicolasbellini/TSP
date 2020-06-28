@@ -1,10 +1,7 @@
 package ar.edu.unq.tsp.controller;
 
 import ar.edu.unq.tsp.DTO.PedidoDetalleDTO;
-import ar.edu.unq.tsp.DTO.ProductoUbicacionDTO;
-import ar.edu.unq.tsp.exception.ProductoUbicacionException;
 import ar.edu.unq.tsp.model.Pedido;
-import ar.edu.unq.tsp.model.Producto;
 import ar.edu.unq.tsp.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -62,6 +59,12 @@ public class PedidoController {
     @ResponseStatus(HttpStatus.OK)
     public List<Pedido> getPedidosDescartados(){
         return this.pedidoService.getPedidosDescartados();
+    }
+
+    @GetMapping("/deshacerDescarte")
+    @ResponseStatus(HttpStatus.OK)
+    public Pedido deshacerDescarte(@RequestBody Pedido pedido){
+        return this.pedidoService.deshacerDescarte(pedido);
     }
 
     @PostMapping("")

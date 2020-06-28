@@ -27,13 +27,9 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Pedido create(Pedido pedido) {
-        return pedidoRepository.save(pedido);
-    }
-
-    @Override
     public Pedido update(Pedido pedido) throws Exception {
         if (!pedido.isEntregado()){
+            pedido.calcularTotal();
             return pedidoRepository.save(pedido);
         }
         else {
@@ -53,6 +49,7 @@ public class PedidoServiceImpl implements PedidoService {
             Pedido pedido = pedidoOptional.get();
             if(pedido.isEntregado()) {
                 pedido.agregarPedidoDetalle(pedidoDetalleDTO.getPedidoDetalle());
+                pedido.calcularTotal();
                 return pedidoRepository.save(pedido);
             }else{
                     throw new Exception("El pedido ya fue entregado");
@@ -83,6 +80,12 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public List<Pedido> getPedidosDescartados() {
         return this.pedidoRepository.findByDescartadoTrue();
+    }
+
+    @Override
+    public Pedido create(Pedido pedido) {
+        pedido.calcularTotal();
+        return pedidoRepository.save(pedido);
     }
 
     @Override
